@@ -414,17 +414,28 @@ class _MyAppState extends State<HomePage> {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  displayIncomingCall('10086');
+                  hangup(newUUID());
                 },
-                child: const Text('Display incoming call now'),
+                child: const Text('Hang Up 1'),
               ),
               ElevatedButton(
                 onPressed: () async {
-                  displayIncomingCallDelayed('10086');
+                  _callKeep.endCall(newUUID());
                 },
-                child: const Text('Display incoming call now in 3s'),
+                child: const Text('Hang Up 2'),
               ),
-              buildCallingWidgets()
+              ElevatedButton(
+                onPressed: () async {
+                  _callKeep.endAllCalls();
+                },
+                child: const Text('Hang Up 3'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  _callKeep.reportEndCallWithUUID(newUUID(), 2);
+                },
+                child: const Text('Hang Up 4'),
+              ),
             ],
           ),
         ),
